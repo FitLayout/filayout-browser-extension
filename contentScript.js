@@ -654,6 +654,22 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 				let pg = await Promise.race([pageTask, timerTask]);
 				clearTimeout(timerId);
 
+				// Screenshot - base64
+				const screenshotPromise = new Promise((resolve, reject) => {
+					chrome.runtime.sendMessage({action: "captureTab"}, function(response) {
+						if (response.error) {
+							console.error('Error capturing screenshot:', response.error);
+							reject(response.error);
+						} else {
+							console.log('Screenshot captured successfully');
+							resolve(response.dataScreenshot);
+							console.log('Screenshot:', response.dataScreenshot);
+						}
+					});
+				});
+
+				pg.screenshot = await screenshotPromise;;
+
 				var jsonStringified = JSON.stringify(pg);
 				console.log(jsonStringified); // Output to console
 				sendDataToServer(jsonStringified);
@@ -691,7 +707,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 					overlayDiv.style.height = '100%';
 					overlayDiv.style.backgroundColor = 'rgba(0,0,0,0.0)';
 					overlayDiv.style.zIndex = '1000';
-					overlayDiv.style.opacity = '0.5';
+					//overlayDiv.style.opacity = '0.5';
 					overlayDiv.style.pointerEvents = 'auto';
 					overlayDiv.innerHTML = window.globalJsonResponse;
 					document.body.appendChild(overlayDiv);
