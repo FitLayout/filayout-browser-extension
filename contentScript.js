@@ -3,6 +3,21 @@ window.globalJsonResponse = null;
 window.globalURL = null;
 chrome.runtime.sendMessage({action: "displaySpinner", html: window.globalJsonResponse});
 
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+    if (message.action === "updatePointerEvents") {
+        const newPointerEvents = message.pointerEvents;
+
+        let overlayDiv = document.getElementById('overlayDiv');
+        if (overlayDiv) {
+            overlayDiv.style.pointerEvents = newPointerEvents;
+            console.log(`Pointer events updated to ${newPointerEvents}`);
+        }
+    }
+});
+
+
+
+
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 	if (request.action === "genJson") {
 
@@ -682,7 +697,13 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
 		async function sendDataToServer(data) {
 			try {
-				let response = await fetch(request.url+'/api/r/'+request.uid+'/run/renderJson', {
+				if (!/^https?:\/\//.test(request.url)) {
+					request.url = 'https://' + request.url;
+				}
+
+				request.url = request.url.replace(/\/\.\./, '/' + request.uid);
+
+				let response = await fetch(request.url, {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
@@ -700,6 +721,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 					console.log(window.globalURL);
 					
 					let overlayDiv = document.createElement('div');
+					overlayDiv.id = 'overlayDiv';
 					overlayDiv.style.position = 'absolute';
 					overlayDiv.style.top = '0';
 					overlayDiv.style.left = '0';
@@ -708,7 +730,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 					overlayDiv.style.backgroundColor = 'rgba(0,0,0,0.0)';
 					overlayDiv.style.zIndex = '1000';
 					//overlayDiv.style.opacity = '0.5';
-					overlayDiv.style.pointerEvents = 'auto';
+					overlayDiv.style.pointerEvents = request.layer;
 					overlayDiv.innerHTML = window.globalJsonResponse;
 					document.body.appendChild(overlayDiv);
 			

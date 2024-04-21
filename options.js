@@ -5,7 +5,7 @@ document.getElementById('clearStorage').addEventListener('click', function() {
 });
 
 document.getElementById('deleteItem').addEventListener('click', function() {
-    var select = document.getElementById('serverSelect');
+    var select = document.querySelector('.profile');
     var selectedUID = select.value;
 
     // remove from combobox
@@ -27,7 +27,7 @@ document.getElementById('deleteItem').addEventListener('click', function() {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    const comboBox = document.querySelector('.material-combo-box');
+    const comboBox = document.querySelector('.profile');
 
     // load
     function addProfileToComboBox(uid, hostname) {

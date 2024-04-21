@@ -21,7 +21,7 @@
         <div class="mdl-cell mdl-cell--6-col">
           <form>
             <div class="input-container">
-              <input type="text" class="material-textarea" id="hostname" value="https://layout.fit.vutbr.cz">
+              <input type="text" class="material-textarea" id="hostname" value="layout.fit.vutbr.cz/api/r/../run/renderJson">
               <label for="hostname" class="material-label">Hostname</label>
             </div>
 
@@ -30,9 +30,15 @@
               <label for="UID" class="material-label">UID</label>
             </div>
 
-            <div class="input-container">
-              <input type="text" class="material-textarea" id="commands" value="-w">
-              <label for="commands" class="material-label">Commands / Parameters</label>
+            <div class="mdl-textfield--floating-label mdl-textfield mdl-js-textfield ">
+              <select class="mdl-textfield__input material-combo-box activeLayer">
+                <option value="auto">Foreground</option>
+                <option value="none">Background</option>
+              </select>
+              <div class="material-combo-box-label">
+                <div class="material-combo-box-label-text">Active Layer</div>
+                <div class="material-combo-box-icon"></div>
+              </div>
             </div>
 
             <label class="checkbox-container">
@@ -41,9 +47,9 @@
               Save?
             </label>
             <div class="mdl-textfield--floating-label mdl-textfield mdl-js-textfield ">
-              <select class="mdl-textfield__input material-combo-box">
-                <option value="277470f8-f37f-4be4-b469-7ecb8a58ce8b">layout.fit.vutbr.cz</option>
-                <option value="UID2">server2</option>
+              <select class="mdl-textfield__input material-combo-box profile">
+                <option value="277470f8-f37f-4be4-b469-7ecb8a58ce8b">layout.fit.vutbr.cz/../run/renderJson</option>
+                <option value="277470f8-f37f-4be4-b469-7ecb8a58ce8b">layout.fit.vutbr.cz/api/r/../run/tagJson</option>
                 <option value="UID3">server3</option>
               </select>
               <div class="material-combo-box-label">
