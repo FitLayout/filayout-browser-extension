@@ -1,24 +1,23 @@
-
 window.globalJsonResponse = null;
 window.globalURL = null;
-chrome.runtime.sendMessage({action: "displaySpinner", html: window.globalJsonResponse});
+browser.runtime.sendMessage({ action: "displaySpinner", html: window.globalJsonResponse });
 
-chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-    if (message.action === "updatePointerEvents") {
-        const newPointerEvents = message.pointerEvents;
+browser.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+	if (message.action === "updatePointerEvents") {
+		const newPointerEvents = message.pointerEvents;
 
-        let overlayDiv = document.getElementById('overlayDiv');
-        if (overlayDiv) {
-            overlayDiv.style.pointerEvents = newPointerEvents;
-            console.log(`Pointer events updated to ${newPointerEvents}`);
-        }
-    }
+		let overlayDiv = document.getElementById('overlayDiv');
+		if (overlayDiv) {
+			overlayDiv.style.pointerEvents = newPointerEvents;
+			console.log(`Pointer events updated to ${newPointerEvents}`);
+		}
+	}
 });
 
 
 
 
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 	if (request.action === "genJson") {
 
 		(function () {
@@ -573,15 +572,28 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 				for (var i = 0; i < rects.length; i++) {
 					var rect = rects[i];
 					// TODO this is Chrome-specific; use caretPositionFromPoint in other browsers
-					var range = document.caretRangeFromPoint(rect.x + 1, rect.y + rect.height / 2); //use +1 to be sure to hit some position
-					if (range) {
-						var ofs = range.startOffset;
-						// detect line breaks
-						if (i == 0 || rect.y != lastY) {
-							breaks.push(ofs);
-							lastY = rect.y;
+					if (document.caretPositionFromPoint) {
+						var range = document.caretPositionFromPoint(rect.x + 1, rect.y + rect.height / 2); //use +1 to be sure to hit some position
+						if (range) {
+							var ofs = range.offset;
+							// detect line breaks
+							if (i == 0 || rect.y != lastY) {
+								breaks.push(ofs);
+								lastY = rect.y;
+							}
+						}
+					} else if (document.caretRangeFromPoint) {
+						var range = document.caretRangeFromPoint(rect.x + 1, rect.y + rect.height / 2); //use +1 to be sure to hit some position
+						if (range) {
+							var ofs = range.startOffset;
+							// detect line breaks
+							if (i == 0 || rect.y != lastY) {
+								breaks.push(ofs);
+								lastY = rect.y;
+							}
 						}
 					}
+
 				}
 				breaks.push(text.length);
 				//split to elements
@@ -655,7 +667,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
 
 		async function evaluatePage() {
-			
+
 			const EVAL_TIMEOUT = 60; // in seconds
 			fitlayoutDetectLines();
 			let pageTask = fitlayoutExportBoxes();
@@ -671,7 +683,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
 				// Screenshot - base64
 				const screenshotPromise = new Promise((resolve, reject) => {
-					chrome.runtime.sendMessage({action: "captureTab"}, function(response) {
+					browser.runtime.sendMessage({ action: "captureTab" }).then(response => {
 						if (response.error) {
 							console.error('Error capturing screenshot:', response.error);
 							reject(response.error);
@@ -719,7 +731,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 					console.log(window.globalJsonResponse);
 					window.globalURL = request.url;
 					console.log(window.globalURL);
-					
+
 					let overlayDiv = document.createElement('div');
 					overlayDiv.id = 'overlayDiv';
 					overlayDiv.style.position = 'absolute';
@@ -733,16 +745,16 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 					overlayDiv.style.pointerEvents = request.layer;
 					overlayDiv.innerHTML = window.globalJsonResponse;
 					document.body.appendChild(overlayDiv);
-			
-					chrome.runtime.sendMessage({action: "displayHTML", html: window.globalJsonResponse});
-					chrome.runtime.sendMessage({action: "done", html: window.globalJsonResponse});
+
+					browser.runtime.sendMessage({ action: "displayHTML", html: window.globalJsonResponse });
+					browser.runtime.sendMessage({ action: "done", html: window.globalJsonResponse });
 				} else {
 					console.error("Failed to send data to the server");
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
 			} catch (error) {
 				//console.error("Error sending data to the server:", error);
-				chrome.runtime.sendMessage({action: "error", message: error.toString()});
+				browser.runtime.sendMessage({ action: "error", message: error.toString() });
 			}
 		}
 

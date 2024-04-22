@@ -1,87 +1,129 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/material.min.js"></script>
-</head>
-<body>
-
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header">
-      <div class="mdl-layout__header-col">
-        <span class="mdl-layout-title">
-          <img src="img/icon128.png" alt="" width="64" height="64"> Control Panel
-        </span>
-      </div>
-    </header>
-    <main class="mdl-layout__content">
-      <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--6-col">
-          <form>
-            <div class="input-container">
-              <input type="text" class="material-textarea" id="hostname" value="layout.fit.vutbr.cz/api/r/../run/renderJson">
-              <label for="hostname" class="material-label">Hostname</label>
-            </div>
-
-            <div class="input-container">
-              <input type="text" class="material-textarea" id="UID" value="277470f8-f37f-4be4-b469-7ecb8a58ce8b">
-              <label for="UID" class="material-label">UID</label>
-            </div>
-
-            <div class="mdl-textfield--floating-label mdl-textfield mdl-js-textfield ">
-              <select class="mdl-textfield__input material-combo-box activeLayer">
-                <option value="auto">Foreground</option>
-                <option value="none">Background</option>
-              </select>
-              <div class="material-combo-box-label">
-                <div class="material-combo-box-label-text">Active Layer</div>
-                <div class="material-combo-box-icon"></div>
-              </div>
-            </div>
-
-            <label class="checkbox-container">
-              <input type="checkbox" class="material-checkbox">
-              <span class="checkmark"></span>
-              Save?
-            </label>
-            <div class="mdl-textfield--floating-label mdl-textfield mdl-js-textfield ">
-              <select class="mdl-textfield__input material-combo-box profile">
-                <option value="277470f8-f37f-4be4-b469-7ecb8a58ce8b">layout.fit.vutbr.cz/../run/renderJson</option>
-                <option value="277470f8-f37f-4be4-b469-7ecb8a58ce8b">layout.fit.vutbr.cz/api/r/../run/tagJson</option>
-                <option value="UID3">server3</option>
-              </select>
-              <div class="material-combo-box-label">
-                <div class="material-combo-box-label-text">Select server / profile</div>
-                <div class="material-combo-box-icon"></div>
-              </div>
-            </div>
-
-            <button type="button" id="sendJson" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-              Send
-            </button>
-
-            <div class="loading">
-              <div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate hidden"><p>Processing...</p></div>
-            </div> 
-
-            <div class="textarea-container">
-              <textarea id="serverData" class="material-textarea">Server data!</textarea>
-              <label for="serverData" class="material-label">Output log</label>
-            </div>
-
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type="button" id="settingsButton">
-              Settings
-            </button>
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="reset">
-              Reset
-            </button>
-          </form>
+  <head>
+    <link rel="stylesheet" href="css/material.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/material.min.js"></script>
+    <script src="js/browser-polyfill.min.js"></script>
+  </head>
+  <body>
+    <div class="mdl-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-col">
+          <span class="mdl-layout-title">
+            <img src="img/icon128.png" alt="" width="64" height="64" /> Control
+            Panel
+          </span>
         </div>
-      </div>
-    </main>
-  </div>
-  <script src="popup.js"></script>
-</body>
+      </header>
+      <main class="mdl-layout__content">
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--6-col">
+            <form>
+              <div class="input-container">
+                <input
+                  type="text"
+                  class="material-textarea"
+                  id="hostname"
+                  value="layout.fit.vutbr.cz/api/r/../run/renderJson"
+                />
+                <label for="hostname" class="material-label">Hostname</label>
+              </div>
+
+              <div class="input-container">
+                <input
+                  type="text"
+                  class="material-textarea"
+                  id="UID"
+                  value="277470f8-f37f-4be4-b469-7ecb8a58ce8b"
+                />
+                <label for="UID" class="material-label">UID</label>
+              </div>
+
+              <div
+                class="mdl-textfield--floating-label mdl-textfield mdl-js-textfield"
+              >
+                <select
+                  class="mdl-textfield__input material-combo-box activeLayer"
+                >
+                  <option value="auto">Foreground</option>
+                  <option value="none">Background</option>
+                </select>
+                <div class="material-combo-box-label">
+                  <div class="material-combo-box-label-text">Active Layer</div>
+                  <div class="material-combo-box-icon"></div>
+                </div>
+              </div>
+
+              <label class="checkbox-container">
+                <input type="checkbox" class="material-checkbox" />
+                <span class="checkmark"></span>
+                Save?
+              </label>
+              <div
+                class="mdl-textfield--floating-label mdl-textfield mdl-js-textfield"
+              >
+                <select class="mdl-textfield__input material-combo-box profile">
+                  <option value="277470f8-f37f-4be4-b469-7ecb8a58ce8b">
+                    layout.fit.vutbr.cz/api/r/../run/renderJson
+                  </option>
+                  <option value="277470f8-f37f-4be4-b469-7ecb8a58ce8b">
+                    layout.fit.vutbr.cz/api/r/../run/tagJson
+                  </option>
+                  <option value="UID3">server3</option>
+                </select>
+                <div class="material-combo-box-label">
+                  <div class="material-combo-box-label-text">
+                    Select server / profile
+                  </div>
+                  <div class="material-combo-box-icon"></div>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                id="sendJson"
+                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+              >
+                Send
+              </button>
+
+              <div class="loading">
+                <div
+                  id="p2"
+                  class="mdl-progress mdl-js-progress mdl-progress__indeterminate hidden"
+                >
+                  <p>Processing...</p>
+                </div>
+              </div>
+
+              <div class="textarea-container">
+                <textarea id="serverData" class="material-textarea">
+Server data!</textarea
+                >
+                <label for="serverData" class="material-label"
+                  >Output log</label
+                >
+              </div>
+
+              <button
+                class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
+                type="button"
+                id="settingsButton"
+              >
+                Settings
+              </button>
+              <button
+                class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                type="reset"
+              >
+                Reset
+              </button>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="popup.js"></script>
+  </body>
 </html>

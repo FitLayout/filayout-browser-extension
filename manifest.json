@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "extension",
+  "name": "Control panel",
   "version": "0.1",
   "description": "",
   "permissions": [
@@ -11,37 +11,57 @@
   ],
   "host_permissions": [
     "http://*/*",
-    "https://*/*",
-    "http://localhost:5000/"
+    "https://*/*"
   ],
-  "options_page": "options.html",
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
   "icons": {
     "16": "img/icon16.png",
     "48": "img/icon48.png",
     "128": "img/icon128.png"
   },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "456556165156748487878678785639489445645646564564564489@example.com"
+    }
+  },
   "background": {
+    "scripts": [
+      "background.js"
+    ],
     "service_worker": "background.js"
   },
   "action": {
+    "default_popup": "layout.html",
     "default_icon": {
       "16": "img/icon16.png",
       "48": "img/icon48.png",
       "128": "img/icon128.png"
     },
-    "default_title": "extension",
-    "default_popup": "layout.html"
+    "default_title": "Control panel"
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["contentScript.js"]
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "js/browser-polyfill.min.js",
+        "contentScript.js"
+      ]
     }
   ],
   "web_accessible_resources": [
     {
-      "resources": ["material.min.js"],
-      "matches": ["<all_urls>"]
+      "resources": [
+        "material.min.js",
+        "contentScript.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
     }
   ]
 }

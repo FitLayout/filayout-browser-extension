@@ -1,10 +1,10 @@
-document.getElementById('clearStorage').addEventListener('click', function() {
-    chrome.storage.sync.clear(function() {
+document.getElementById('clearStorage').addEventListener('click', function () {
+    browser.storage.sync.clear().then(() => {
         alert('Data was deleted.');
     });
 });
 
-document.getElementById('deleteItem').addEventListener('click', function() {
+document.getElementById('deleteItem').addEventListener('click', function () {
     var select = document.querySelector('.profile');
     var selectedUID = select.value;
 
@@ -12,13 +12,13 @@ document.getElementById('deleteItem').addEventListener('click', function() {
     select.remove(select.selectedIndex);
 
     // reload
-    chrome.storage.sync.get(['profiles'], function(result) {
+    browser.storage.sync.get(['profiles']).then(result => {
         if (result.profiles) {
             // filter
             const filteredProfiles = result.profiles.filter(profile => profile.uid !== selectedUID);
 
             //save updated
-            chrome.storage.sync.set({profiles: filteredProfiles}, function() {
+            browser.storage.sync.set({ profiles: filteredProfiles }).then(() => {
                 console.log('Profile removed');
             });
         }
@@ -26,7 +26,7 @@ document.getElementById('deleteItem').addEventListener('click', function() {
 });
 
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const comboBox = document.querySelector('.profile');
 
     // load
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // load
-    chrome.storage.sync.get(['profiles'], function(result) {
+    browser.storage.sync.get(['profiles']).then(result => {
         if (result.profiles) {
             result.profiles.forEach(profile => {
                 addProfileToComboBox(profile.uid, profile.hostname);

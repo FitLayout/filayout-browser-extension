@@ -1,15 +1,12 @@
-chrome.action.onClicked.addListener((tab) => {
-  chrome.scripting.executeScript({
-    target: { tabId: tab.id },
-    files: ['contentScript.js']
-  });
-});
+if ('function' === typeof importScripts) {
+  importScripts('js/browser-polyfill.min.js');
+}
 
 function screenshot() {
   return new Promise((resolve, reject) => {
-    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-      if (chrome.runtime.lastError) {
-        return reject(new Error(chrome.runtime.lastError.message));
+    browser.tabs.query({ active: true, currentWindow: true }).then(tabs => {
+      if (browser.runtime.lastError) {
+        return reject(new Error(browser.runtime.lastError.message));
       }
 
       if (tabs.length === 0) {
@@ -17,9 +14,9 @@ function screenshot() {
       }
 
       const currentTab = tabs[0];
-      chrome.tabs.captureVisibleTab(currentTab.windowId, {format: 'png'}, (dataScreenshot) => {
-        if (chrome.runtime.lastError) {
-          return reject(new Error(chrome.runtime.lastError.message));
+      browser.tabs.captureVisibleTab(currentTab.windowId, { format: 'png' }).then(dataScreenshot => {
+        if (browser.runtime.lastError) {
+          return reject(new Error(browser.runtime.lastError.message));
         }
 
         const base64Data = dataScreenshot.replace(/^data:image\/png;base64,/, '');
@@ -31,14 +28,14 @@ function screenshot() {
   });
 }
 
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.action === "captureTab") {
-      screenshot().then(dataScreenshot => {
-          sendResponse({dataScreenshot: dataScreenshot});
-      }).catch(error => {
-          console.error('Error: screenshot:', error);
-          sendResponse({error: error.toString()});
-      });
-      return true;
-    }
+    screenshot().then(dataScreenshot => {
+      sendResponse({ dataScreenshot: dataScreenshot });
+    }).catch(error => {
+      console.error('Error: screenshot:', error);
+      sendResponse({ error: error.toString() });
+    });
+    return true;
+  }
 });
