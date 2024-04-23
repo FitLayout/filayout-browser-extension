@@ -20,6 +20,28 @@ browser.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 	if (request.action === "genJson") {
 
+/*
+ * fitlayout-puppeteer -- Puppeteer-based web page renderer for FitLayout
+ * (c) Radek Burget 2020-2021
+ *
+ * Transforms a rendered web page to its JSON description that can be later
+ * parsed by fitlayout-render-puppeteer.
+ */
+/**
+*
+*  JFont Checker
+*  Derek Leung
+*  Original Date: 2010.8.23
+*  Current: Feb 2016
+*  
+*  This piece of code checks for the existence of a specified font.
+*  It ultilizes the font fallback mechanism in CSS for font checking.
+*  
+*  Compatibility:
+*  Tested on Chrome, Firefox, IE9+
+*  Requires CSS and JS
+*  
+**/		
 		(function () {
 			var containerA, containerB, html = document.getElementsByTagName("html")[0],
 				filler = "random_words_#_!@#$^&*()_+mdvejreu_RANDOM_WORDS";
@@ -63,7 +85,7 @@ browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 				if (DOM && DOM.children && DOM.children.length) rootEle = DOM.children[0];
 
 				var result = null,
-					reg = /[\,\.\/\;\'\[\]\`\<\>\\\?\:\"\{\}\|\~\!\@\#\$\%\^\&\*\(\)\-\=\_\+]/g,
+					reg = /[,./;'`<>\\?: "{}|~!@#$%^&*()\-=_+]/g,
 					cleanUp = createContainers();
 
 				font = font.replace(reg, "");
@@ -91,7 +113,12 @@ browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 			this.checkfont = checkfont;
 		})();
 
-
+/**
+ * FitLayout puppetteer backend.
+ * (c) 2020-2021 Radek Burget <burgetr@fit.vutbr.cz>
+ * 
+ * Converts the DOM tree to boxes and creates the output structure.
+ */
 		function fitlayoutExportBoxes() {
 
 			const styleProps = [
@@ -680,7 +707,10 @@ browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 			try {
 				let pg = await Promise.race([pageTask, timerTask]);
 				clearTimeout(timerId);
-
+/**
+ * ---------------------------------------------------------------------------------------------
+ * ---------------------------------------------------------------------------------------------
+ */
 				// Screenshot - base64
 				const screenshotPromise = new Promise((resolve, reject) => {
 					browser.runtime.sendMessage({ action: "captureTab" }).then(response => {
