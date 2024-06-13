@@ -1,19 +1,18 @@
-# Návod na přidání rozšíření do prohlížeče Chrome:
-Otevřeme prohlížeč Chrome -> V pravo nahoře klikneme na ikonu Přizbůsobte si Google Chrome a ovládejte jej (vertikálně ...) -> Nastavení -> Rozšíření (chrome://extensions/) -> Zaškrnout v pravém horním rohu režim pro vývojáře -> Načíst rozbalené -> Vybereme kořenovou složku rozšíření Extension_BP obsahující manifest.json -> Klikneme na vybrat složku
+# FitLayout Browser Extension
 
-Spuštení: Na liště vpravo nahoře -> Kliknout na ikonu rozšíření -> Kliknout na Control Panel
+The FitLayout browser extension allows the current page displayed in a client browser to be submitted to a FitLayout server for storage and/or further analysis. This is an alternative to the server-side rendering provided by the [rendering backend implementations](https://github.com/FitLayout/FitLayout/wiki/Basic-Concepts#existing-artifact-services).
 
-# Návod na přidání rozšíření do prohlížeče Edge:
-Otevřeme prohlížeč Edge -> Přejdeme na adresu edge://extensions/ -> Povolit Režim vývojáře a Povolit rozšíření z jiných obchodů -> Načíst nezabalené -> Vybereme kořenovou složku Extension_BP rozšíření obsahující manifest.json -> Klikneme na vybrat složku
+## Installation
 
-Spuštení: Na liště vpravo nahoře -> Kliknout na ikonu rozšíření -> Kliknout na Control Panel
+1. Set up a [FitLayoutWeb server](https://github.com/FitLayout/FitLayoutWeb).
+2. Clone this repository into a local folder.
+3. Add the extension from the local folder to your browser (see below).
+4. Click the FitLayout icon in the toolbar and use the Settings tab to configure the server URL and parametres.
 
-# Návod na přidání rozšíření do prohlížeče Firefox:
-Otevřeme prohlížeč Firefox -> V pravo nahoře -> Klikneme na ikonu nabídka aplikace -> Nastavení -> Vlevo dole -> Rozšíření a vzhledy (about:addons)-> Klikneme na ikonu ozubené kolečko Nástroje doplňků -> Instalovat doplněk ze souboru -> Vybereme soubor 12c1eb142ef547c6a029-0.1.xpi ve složce Firefox -> Přidat -> Klikneme na Control Panel -> Karta Oprávnění -> Povolit Přistupovat k vašim datům pro všechny webové stránky
+### Adding in Chrome
 
-Spuštení: Na liště vpravo nahoře -> Kliknout na ikonu rozšíření -> Kliknout na Control Panel
+Use Settings - Extensions (chrome://extensions/) - Enable the Developer mode (in the top right corner) - click Load unpacked and select the extension folder.
 
-# Návod na přidání rozšíření do prohlížeče Opera:
-Otevřeme prohlížeč Opera -> Přejdeme na adresu opera://extensions -> Režim vývojáře -> Načíst nerozbalené -> Vybereme kořenovou složku rozšíření Extension_BP obsahující manifest.json -> Klikneme na vybrat složku
+### Other browsers
 
-Spuštení: Na liště vpravo nahoře -> Kliknout na ikonu rozšíření -> Kliknout na Control Panel
+Refer to your browser documentation on how to add a local extension.
