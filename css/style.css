@@ -1,211 +1,208 @@
 #mainPopup {
-  padding: 5px;
-  height: auto;
-  width: 100%;
-  font-family: Helvetica, Ubuntu, Arial, sans-serif;
+    padding: 5px;
+    height: auto;
+    width: 100%;
+    font-family: Helvetica, Ubuntu, Arial, sans-serif;
 }
 
 h1 {
-  font-size: 2em;
+    font-size: 2em;
 }
 
 body {
-  min-width: 320px;
-  max-width: 330px;
+    min-width: 320px;
+    max-width: 330px;
 }
 
 .material-combo-box {
-  width: 100%;
-  color: rgba(0, 0, 0, 0.87);
-  background-color: white;
-  padding: 5px;
+    width: 100%;
+    color: rgba(0, 0, 0, 0.87);
+    background-color: white;
+    padding: 5px;
 }
 
 .material-combo-box-label {
-  position: absolute;
-  top: 20px;
-  left: 8px;
-  font-size: 14px;
-  color: #9e9e9e;
-  pointer-events: none;
-  transition: all 0.2s ease-out;
+    position: absolute;
+    top: 20px;
+    left: 8px;
+    font-size: 14px;
+    color: #9e9e9e;
+    pointer-events: none;
+    transition: all 0.2s ease-out;
 }
 
 .material-combo-box-label-text {
-  font-size: 16px;
-  color: rgba(0, 0, 0, 0.6);
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.6);
 }
 
-.material-combo-box:focus
-  + .material-combo-box-label
-  .material-combo-box-label-text,
-.material-combo-box:valid
-  + .material-combo-box-label
-  .material-combo-box-label-text {
-  color: #3f51b5;
-  font-size: 14px;
-  transform: translateY(-20px);
+.material-combo-box:focus+.material-combo-box-label .material-combo-box-label-text,
+.material-combo-box:valid+.material-combo-box-label .material-combo-box-label-text {
+    color: #3f51b5;
+    font-size: 14px;
+    transform: translateY(-20px);
 }
 
 .textarea-container {
-  position: relative;
-  max-width: 100%;
-  box-sizing: border-box;
+    position: relative;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .material-textarea {
-  border: none;
-  border-radius: 4px;
-  border: 1px solid #e0e0e0;
-  font-size: 16px;
-  display: block;
-  margin: 0 0 15px;
-  width: 100%;
-  resize: vertical;
-  padding: 10px 5px 10px 5px;
-  outline: none;
-  transition: border-color 0.2s ease-out;
+    border: none;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+    font-size: 16px;
+    display: block;
+    margin: 0 0 15px;
+    width: 100%;
+    resize: vertical;
+    padding: 10px 5px 10px 5px;
+    outline: none;
+    transition: border-color 0.2s ease-out;
 }
 
 .material-label {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  font-size: 14px;
-  color: #9e9e9e;
-  pointer-events: none;
-  transition: all 0.2s ease-out;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-size: 14px;
+    color: #9e9e9e;
+    pointer-events: none;
+    transition: all 0.2s ease-out;
 }
 
-.material-textarea:focus + .material-label,
-.material-textarea:valid + .material-label {
-  transform: translateY(-20px);
-  font-size: 14px;
-  color: #3f51b5;
+.material-textarea:focus+.material-label,
+.material-textarea:valid+.material-label {
+    transform: translateY(-20px);
+    font-size: 14px;
+    color: #3f51b5;
 }
 
 .checkbox-container {
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  font-size: 14px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .material-checkbox {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
 }
 
 .checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 20px;
-  width: 20px;
-  background-color: #eee;
-  border-radius: 4px;
-  border: 1px solid #9e9e9e;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 4px;
+    border: 1px solid #9e9e9e;
 }
 
 .checkbox-container:hover .checkmark {
-  background-color: #ccc;
+    background-color: #ccc;
 }
 
-.material-checkbox:checked + .checkmark {
-  background-color: #3f51b5;
-  border: none;
+.material-checkbox:checked+.checkmark {
+    background-color: #3f51b5;
+    border: none;
 }
 
-.material-checkbox:checked + .checkmark:after {
-  content: "";
-  position: absolute;
-  display: block;
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
+.material-checkbox:checked+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: block;
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
 }
 
 .material-label {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  font-size: 14px;
-  color: #9e9e9e;
-  pointer-events: none;
-  transition: all 0.2s ease-out;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-size: 14px;
+    color: #9e9e9e;
+    pointer-events: none;
+    transition: all 0.2s ease-out;
 }
 
 .input-container {
-  position: relative;
-  width: 100%;
-  box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .material-input {
-  border: none;
-  border-radius: 4px;
-  border: 1px solid #e0e0e0;
-  padding: 8px;
-  width: 100%;
-  outline: none;
-  transition: border-color 0.2s ease-out;
-  font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+    padding: 8px;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.2s ease-out;
+    font-size: 16px;
 }
 
 .material-label {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  font-size: 14px;
-  color: #9e9e9e;
-  pointer-events: none;
-  transition: all 0.2s ease-out;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-size: 14px;
+    color: #9e9e9e;
+    pointer-events: none;
+    transition: all 0.2s ease-out;
 }
 
 .material-input:focus {
-  border-color: #3f51b5;
+    border-color: #3f51b5;
 }
 
-.material-input:focus + .material-label {
-  transform: translateY(-20px);
-  font-size: 14px;
-  color: #3f51b5;
+.material-input:focus+.material-label {
+    transform: translateY(-20px);
+    font-size: 14px;
+    color: #3f51b5;
 }
 
 form {
-  padding: 5px;
+    padding: 5px;
 }
 
 .mdl-button--accent {
-  background: #ff9800;
+    background: #ff9800;
 }
+
 .mdl-button--accent:hover {
-  background: #e69138;
+    background: #e69138;
 }
 
 .loading {
-  padding: 15px 0 45px;
-  height: 5px;
+    padding: 15px 0 45px;
+    height: 5px;
 }
 
 .mdl-progress {
-  width: 100%;
-  height: 5px;
-  padding: 0;
-  margin: 0;
+    width: 100%;
+    height: 5px;
+    padding: 0;
+    margin: 0;
 }
