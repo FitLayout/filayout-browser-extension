@@ -1,0 +1,27 @@
+.jumbotron {
+	margin: 5em 0 5em 0;
+}
+.jumbotron h1 {
+	font-size: 500%;
+	font-variant: small-caps;
+    text-align: center;
+}
+.jumbotron a {
+	text-decoration: none;
+}
+
+.settings {
+    max-width: 80em;
+    margin: auto;
+}
+
+.settings h2 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0;
+}
+
+.profiles {
+    padding: 1em;
+    border: 2px solid #e0e0e0;
+}

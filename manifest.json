@@ -2,7 +2,8 @@
     "manifest_version": 3,
     "name": "FitLayout",
     "version": "1.0",
-    "description": "",
+    "description": "Submits the current page to a FitLayout server for further analysis.",
+    "homepage_url": "https://github.com/FitLayout/fitlayout-browser-extension",
     "permissions": [
         "tabs",
         "activeTab",

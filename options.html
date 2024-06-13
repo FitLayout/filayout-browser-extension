@@ -1,40 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <link rel="stylesheet" href="css/material.min.css" />
     <script src="js/material.min.js"></script>
     <script src="js/browser-polyfill.min.js"></script>
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/options.css" />
     <title>Settings</title>
-  </head>
-  <body style="background-color: black">
-    <div>
-      <div class="mdl-textfield--floating-label mdl-textfield mdl-js-textfield">
-        <select class="mdl-textfield__input material-combo-box profile">
-          <option value="277470f8-f37f-4be4-b469-7ecb8a58ce8b">layout.fit.vutbr.cz/api/r/../run/renderJson</option>
-          <option value="277470f8-f37f-4be4-b469-7ecb8a58ce8b">layout.fit.vutbr.cz/api/r/../run/tagJson</option>
-          <option value="UID3">server3</option>
-        </select>
-        <div class="material-combo-box-label">
-          <div class="material-combo-box-label-text">
-            Select server / profile
-          </div>
-          <div class="material-combo-box-icon"></div>
+</head>
+
+<body>
+    <header class="jumbotron">
+        <h1>FitLayout</h1>
+    </header>
+    <div class="settings">
+        <h2>FitLayout browser extension: Profile settings</h2>
+        <div class="profiles">
+            <div class="mdl-textfield--floating-label mdl-textfield mdl-js-textfield">
+                <select class="mdl-textfield__input material-combo-box profile">
+                    <option value="277470f8-f37f-4be4-b469-7ecb8a58ce8b">layout.fit.vutbr.cz/api/r/../run/renderJson
+                    </option>
+                    <option value="277470f8-f37f-4be4-b469-7ecb8a58ce8b">layout.fit.vutbr.cz/api/r/../run/tagJson</option>
+                    <option value="UID3">server3</option>
+                </select>
+                <div class="material-combo-box-label">
+                    <div class="material-combo-box-label-text">
+                        Select server / profile
+                    </div>
+                    <div class="material-combo-box-icon"></div>
+                </div>
+            </div>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                id="deleteItem">
+                Delete profile
+            </button>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                id="clearStorage">
+                Delete all saved data
+            </button>
         </div>
-      </div>
-      <button
-        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-        id="deleteItem"
-      >
-        Delete profile
-      </button>
-      <button
-        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-        id="clearStorage"
-      >
-        Delete all saved data
-      </button>
     </div>
     <script src="options.js"></script>
-  </body>
+</body>
+
 </html>
